@@ -30,7 +30,7 @@ public class App {
     private static void runMaze() {
         boolean[][] predefinedMaze = {
                 { true, true, true, true },
-                { false, true, true, true },
+                { false, true, true, true }, 
                 { true, true, false, false },
                 { true, true, true, true }
         };
@@ -38,16 +38,32 @@ public class App {
         System.out.println("Laberinto cargado: ");
         maze.printMaze();
 
-        Cell start = new Cell(0,0);
+        Cell start = new Cell(1,2);
         Cell end = new Cell(3,3);
-        List<MazeSolver> solvers = Arrays.asList(new MazeSolverRecursivo());
+        List<MazeSolver> solvers = Arrays.asList(
+            new MazeSolverRecursivo(),
+            new MazeSolverCompletoRecursivo()
+            );
 
         MazeSolver solver = solvers.get(0);
         List<Cell> path;
         path = solver.getPath(maze.getgrid(), start, end);
 
-        System.out.println("\nCamino encontrado");
-        System.out.println(path);
+        System.out.println("\nCamino encontrado (2 direcciones)");
+        if (path.isEmpty()) {
+            System.out.println("No se encontró camino");
+        } else {
+            System.out.println(path);
+        }
 
+        solver = solvers.get(1);
+        path = solver.getPath(maze.getgrid(), start, end);
+
+        System.out.println("\nCamino encontrado (4 direcciones)");
+        if (path.isEmpty()) {
+            System.out.println("No se encontró camino");
+        } else {
+            System.out.println(path);
+        }
     }
 }

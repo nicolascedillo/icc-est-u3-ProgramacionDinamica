@@ -29,9 +29,7 @@ public class Cell {
 
     @Override
     public String toString() {
-        return "Cell [row=" + row + ", col=" + col + "]";
+        return "[" + row + " , " + col + "]";
     }
-
-    
 
 }
